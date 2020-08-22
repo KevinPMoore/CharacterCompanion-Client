@@ -1,16 +1,21 @@
 import React from 'react';
-import Landing from '../routes/landing/Landing';
-import Login from '../routes/login/Login';
-import Register from '../routes/register/Register';
-import Home from '../routes/home/Home';
+import Landing from './routes/landing/Landing';
+import Login from './routes/login/Login';
+import Register from './routes/register/Register';
+import Home from './routes/home/Home';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 
 export default class App extends React.Component {
   state = {
-    user: []
+    user: {
+      username: null,
+      characters: [],
+      notes: []
+    }
   };
 
+  //Switch needs private and public routes
   render() {
     return(
       <div
@@ -42,7 +47,7 @@ export default class App extends React.Component {
             <Route
               exact
               path={'/home'}
-              component={Home}
+              render={(routeProps) => (<Home {...routeProps} user={this.state.user} />)}
             />
 
           </Switch>
