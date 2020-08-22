@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 export default class Home extends React.Component {
@@ -47,6 +48,9 @@ export default class Home extends React.Component {
         };
     };
 
+    //Render note form on this page but have character creation seperate
+
+    //Set up system prompt on button as modal for future-proofing character creation
     render() {
         return(
             <div
@@ -55,12 +59,30 @@ export default class Home extends React.Component {
                 <section
                     className='home-character-list'
                 >
-
+                    {this.renderCharacterList(this.state.characters)}
+                </section>
+                <section
+                    className='home-character-create'
+                >
+                    <Link
+                        to={'/character_creation'}
+                    >
+                        <button>
+                            New Character
+                        </button>
+                    </Link>
                 </section>
                 <section
                     className='home-note-list'
                 >
-
+                    {this.renderNoteList(this.state.notes)}
+                </section>
+                <section
+                    className='home-note-create'
+                >
+                    <button>
+                        New Note
+                    </button>
                 </section>
             </div>
         );

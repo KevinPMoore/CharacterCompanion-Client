@@ -3,6 +3,7 @@ import Landing from './routes/landing/Landing';
 import Login from './routes/login/Login';
 import Register from './routes/register/Register';
 import Home from './routes/home/Home';
+import CharacterCreation from './routes/character_creation/CharacterCreation';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 
@@ -50,6 +51,11 @@ export default class App extends React.Component {
               render={(routeProps) => (<Home {...routeProps} user={this.state.user} />)}
             />
 
+            <Route
+              exact
+              path={'/character_creation'}
+              render={(routeProps) => (<CharacterCreation {...routeProps} user={this.state.user} />)}
+            />
           </Switch>
         </main>
       </div>
