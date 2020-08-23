@@ -1,64 +1,66 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './CreateCharacter.css';
+import { Character } from '../../Store';
+import './CharacterCreation.css';
 
-export default class CreateCharacter extends React.Component {
+export default class CharacterCreation extends React.Component {
     state = {
-        class: null,
-        level: null,
-        race: null,
-        background: null,
-        ability_scores: {
-            strength: null,
-            dexterity: null,
-            constitution: null,
-            intelligence: null,
-            wisdom: null,
-            charisma: null
-        },
-        saving_throws: {
-            strength: null,
-            dexterity: null,
-            constitution: null,
-            intelligence: null,
-            wisdom: null,
-            charisma: null
-        },
-        skills: {
-            acrobatics_dex: null,
-            animal_handling_wis: null,
-            arcana_int: null,
-            athletics_str: null,
-            deception_cha: null,
-            history_int: null,
-            insight_wis: null,
-            intimidation_cha: null,
-            medicine_wis: null,
-            nature_int: null,
-            perception_wis: null,
-            performance_cha: null,
-            persuassion_cha: null,
-            religion_int: null,
-            sleigh_of_hand_dex: null,
-            stealth_dex: null,
-            survival_wis:null
-        },
-        inspiration: false,
-        proficiency_bonus: null,
-        armor_class: null,
-        initiative: null,
-        speed: null,
-        hit_dice: null,
-        death_saves: {
-            success: 0,
-            fail: 0
-        },
-        equipment: {
+        system: null,
+        step: 0,
+        class: null
+    };
 
-        },
-        inventory: {
-            
-        }
+    handleSelectSystem = (e) => {
+        e.preventDefault();
+        this.setState({
+            system: e.value,
+            step: this.state.step + 1
+        });
+    };
+
+    renderCreationForm = (step) => {
+        switch(step) {
+            case 0:
+                return(
+                    <form
+                        className='character-creation-system'
+                        onSubmit={this.handleSelectSystem}
+                    >
+                        <label htmlFor='system-select'>Select a game system</label>
+                        <select
+                            id='system-select'
+                            className='system-select'
+                            required
+                        >
+                            <option
+                                value='5e'
+                            >
+                                Dungeons and Dragons 5th Edition
+                            </option>
+                        </select>
+                        <button
+                            className='character-creation-next'
+                            type='submit'
+                        >
+                            Next
+                        </button>
+                        <button
+                            className='character-creation-back'
+                        >
+                            Back
+                        </button>
+                    </form>
+                );
+
+            case 1:
+                    return(
+                        <p>
+                            Ya did it!
+                        </p>
+                    )
+            default:
+                break;
+        };
     };
 
     render() {
@@ -66,7 +68,7 @@ export default class CreateCharacter extends React.Component {
             <div
                 className='character-creation'
             >
-
+                {this.renderCreationForm(this.state.step)}
             </div>
         );
     };
