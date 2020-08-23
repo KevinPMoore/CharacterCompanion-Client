@@ -41,8 +41,11 @@ const character = {
         stealth_dex: null,
         survival_wis:null
     },
+    maximum_hit_points: null,
+    current_hit_points: null,
     inspiration: false,
     proficiency_bonus: null,
+    proficiencies: [],
     armor_class: null,
     initiative: null,
     speed: null,
